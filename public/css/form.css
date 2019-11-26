@@ -1,0 +1,42 @@
+::-webkit-input-placeholder{
+    color: #ccc;
+    font-style:italic;
+} 
+:focus::-webkit-input-placeholder{
+     text-indent: -999px
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  border: 0;
+  outline: 0;
+  color: #fff;
+}
+
+input[type="text"] {
+    display: block;
+    width: 400px;
+    margin: 0 0 20px;
+    padding: 8px 12px 10px 12px;
+    border: 1px solid rgba(0,0,0,.5);
+    background: rgba(0,0,0);
+  }
+
+  button[type="submit"] {
+    display: block;
+    width: 150px;
+    margin: 0 0 20px;
+    padding: 8px 0 10px 0;
+    text-align: center;
+    border: 1px solid rgba(0,0,0);
+    background: rgb(121, 116, 116);
+  }
+
+  button:hover {
+    background: #4CAF50;
+  }
