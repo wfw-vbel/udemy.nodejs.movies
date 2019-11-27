@@ -34,3 +34,8 @@ body {
       width: 70%;
       align-content: center;
   }
+
+  h1 {
+    font-weight: bold;
+    color: white;
+  }

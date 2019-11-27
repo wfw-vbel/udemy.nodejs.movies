@@ -4,17 +4,17 @@
 <body>
     <%- include('includes/nav.ejs') %>
     <div class="main">
-        <div class="card">
-            <img src="/images/movie-placeholder.gif">
-            <div class="container">
-                <h4><b>John Wick</b></h4>   
-            </div>
-        </div>
-        <div class="card">
-                <img src="https://upload.wikimedia.org/wikipedia/ru/1/1d/John_Wick_3.jpg">
+        <% if (movies.length > 0) { %>
+            <% for (let movie of movies) { %>
+            <div class="card">
+                <img src="https://imgc.allpostersimages.com/img/print/u-g-F7SH250.jpg?w=550&h=550&p=0">
                 <div class="container">
-                    <h4><b>John Wick 2</b></h4>
+                    <h4><b><%= movie.title %></b></h4>   
                 </div>
-            </div>        
+            </div>
+            <% } %>
+        <% } else { %>
+        <h1>Movies list is empty!</h1>
+        <% } %>
     </div>
 <%- include('includes/end.ejs') %>
