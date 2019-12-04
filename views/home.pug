@@ -1,0 +1,41 @@
+extends layouts/nav.pug
+
+block styles
+    link(rel="stylesheet", href="./css/cards.css")
+    link(rel="stylesheet", href="./css/home-layout.css")
+
+block content
+    .mov
+        h4 Last added movies
+        hr
+        if movies.length > 0
+            .grid
+                each movie in movies
+                    .card
+                        if movie.poster
+                            img(src=movie.poster)
+                        else
+                            img(src="../img/poster-placeholder.png")
+                        .buttons
+                            a(href="#")
+                                input(type="image", src="../img/pen.png", width="18px", height="18px")
+                        .info
+                            span #{movie.title}
+
+        else
+            h1 No movies added yet!
+    .tvs
+        h4 Last added TV shows
+        hr 
+        if shows.length > 0
+            .grid
+                each show in shows
+                    .card
+                        if show.poster
+                            img(src=show.poster)
+                        else
+                            img(src="../img/poster-placeholder.png")
+                        .info
+                            span #{show.title}
+        else
+            h1 No shows added yet!

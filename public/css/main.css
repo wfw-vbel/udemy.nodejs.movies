@@ -3,7 +3,8 @@
   }
   
   body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Open-sans;
+    font-size: large;
     margin:0;
     background-color: rgb(200, 200, 200);
   }
@@ -12,6 +13,7 @@
     width: 90%;
     padding-top: 5rem;
     margin: auto;
+    overflow: hidden;
 }
   
 ul {
@@ -23,6 +25,7 @@ ul {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 9999;
 }
 
 li {
@@ -51,10 +54,15 @@ li a:hover:not(.active) {
 
 .footer {
     background-color: #333;
+    box-sizing: border-box;
+    padding: 0;
     color: white;
-    position: fixed;
+    display: flex;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
     text-align: center;
+    min-height: 20px;
+    vertical-align: middle;
 }
