@@ -5,16 +5,4 @@ block styles
     link(rel="stylesheet", href="./css/home-layout.css")
 
 block content
-    .mov
-        if movies.length > 0
-            .grid
-                each movie in movies
-                    .card
-                        if movie.poster
-                            img(src=movie.poster)
-                        else
-                            img(src="../img/poster-placeholder.png")
-                        .info
-                            span #{movie.title}
-        else
-            h1 No movies added yet!
+    include ../layouts/mov.pug

@@ -1,8 +1,11 @@
 .add-form {
+    position: absolute;
     width: 20rem;
     max-width: 90%;
-    margin: auto;
+    top: 200px;
+    left: 40%;
 }
+
 
 input[type=text], select {
     width: 100%;

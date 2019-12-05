@@ -5,16 +5,4 @@ block styles
     link(rel="stylesheet", href="./css/home-layout.css")
 
 block content
-    .tvs
-        if shows.length > 0
-            .grid
-                each show in shows
-                    .card
-                        if show.poster
-                            img(src=show.poster)
-                        else
-                            img(src="../img/poster-placeholder.png")
-                        .info
-                            span #{show.title}
-        else
-            h1 No shows added yet!
+    include ../layouts/tvs.pug

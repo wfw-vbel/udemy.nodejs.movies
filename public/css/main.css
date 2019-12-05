@@ -11,9 +11,10 @@
 
   main {
     width: 90%;
-    padding-top: 5rem;
+    padding-top: 3rem;
     margin: auto;
     overflow: hidden;
+    min-height: 100vh;
 }
   
 ul {
