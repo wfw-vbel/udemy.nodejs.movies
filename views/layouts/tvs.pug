@@ -1,20 +1,17 @@
-.tvs
-    h4 Last added TV shows
-    hr
-    if shows && shows.length > 0
-        .grid
-            each show in shows
-                .wrapper
-                    .card
-                        a.image-link(href="#")
-                        if show.poster
-                            img.card-image(src=show.poster)
-                        else
-                            img.card-image(src="../img/poster-placeholder.png")
-                        a.pen(href="#")
-                            img(src="../img/wpen.png")
-                        a.trash(href="#")
-                            img(src="../img/wtrash.png")
-                    .title #{show.title}
-    else
-        h1 No shows added yet!
+if shows && shows.length > 0
+    .grid
+        each show in shows
+            .wrapper
+                .card
+                    a.image-link(href="#")
+                    if show.poster
+                        img.card-image(src=show.poster)
+                    else
+                        img.card-image(src="../img/poster-placeholder.png")
+                    a.pen(href="#")
+                        img(src="../img/wpen.png")
+                    a.trash(href="#")
+                        img(src="../img/wtrash.png")
+                .title #{show.title}
+else
+    h1 No shows added yet!

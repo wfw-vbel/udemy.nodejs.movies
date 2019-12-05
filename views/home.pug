@@ -5,5 +5,11 @@ block styles
     link(rel="stylesheet", href="./css/home-layout.css")
 
 block content
-    include ./layouts/mov.pug
-    include ./layouts/tvs.pug
+    .mov
+        h4 Last added movies
+        hr
+        include ./layouts/mov.pug
+    .tvs
+        h4 Last added TV shows
+        hr
+        include ./layouts/tvs.pug

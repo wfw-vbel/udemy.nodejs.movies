@@ -1,20 +1,17 @@
-.mov
-    h4 Last added movies
-    hr
-    if movies.length > 0
-        .grid
-            each movie in movies
-                .wrapper
-                    .card
-                        a.image-link(href="#")
-                        if movie.poster
-                            img.card-image(src=movie.poster)
-                        else
-                            img.card-image(src="../img/poster-placeholder.png")
-                        a.pen(href="#")
-                            img(src="../img/wpen.png")
-                        a.trash(href="#")
-                            img(src="../img/wtrash.png")
-                    .title #{movie.title}
-    else
-        h1 No movies added yet!
+if movies.length > 0
+    .grid
+        each movie in movies
+            .wrapper
+                .card
+                    a.image-link(href="#")
+                    if movie.poster
+                        img.card-image(src=movie.poster)
+                    else
+                        img.card-image(src="../img/poster-placeholder.png")
+                    a.pen(href="#")
+                        img(src="../img/wpen.png")
+                    a.trash(href="#")
+                        img(src="../img/wtrash.png")
+                .title #{movie.title}
+else
+    h1 No movies added yet!
