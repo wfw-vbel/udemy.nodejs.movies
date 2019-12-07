@@ -8,10 +8,14 @@ if movies.length > 0
                         img.card-image(src=movie.poster)
                     else
                         img.card-image(src="../img/poster-placeholder.png")
-                    a.pen(href="#")
-                        img(src="../img/wpen.png")
-                    a.trash(href="#")
-                        img(src="../img/wtrash.png")
+                    if isAdmin
+                        .pen
+                            a(href="/admin/edit")
+                        form(action="/admin/delete-item", method="POST")
+                            button.trash
+                    else
+                        .bookmark
+                            a(href="#22")
                 .title #{movie.title}
 else
     h1 No movies added yet!

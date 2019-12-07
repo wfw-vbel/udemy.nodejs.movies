@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get('/', itemController.getAdminPage);
 router.post('/add-movie', itemController.postNewItem);
+router.get('/edit', itemController.getMovieEditPage);
 
 
 module.exports = router;

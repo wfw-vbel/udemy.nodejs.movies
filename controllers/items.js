@@ -1,11 +1,20 @@
 const Movie = require('../models/movie')
 const Show = require('../models/show')
 
+const admin = 0;
+
 exports.getAdminPage = (req, res, next) => {
-    res.render('./admin/admin-dashboard', {
+    res.render('./admin/dashboard', {
       "pageTitle": "Admin page",
       "menu": "admin"
     });
+};
+
+exports.getMovieEditPage = (req, res, next) => {
+  res.render('./admin/dashboard', {
+    "pageTitle": "Edit Movie",
+    "menu": "admin"
+  });
 };
 
 exports.postNewItem = (req, res, next) => {
@@ -21,14 +30,15 @@ exports.postNewItem = (req, res, next) => {
   };
 
   exports.getHomePage = (req, res, next) => {
-    const itemCount = 5;
+    const itemCount = 6;
     Movie.fetch((movies) => {
           Show.fetch((shows) => {
             res.render('home', {
               "pageTitle": "Main page",
               "menu": "home",
               "movies": movies,
-              "shows": shows
+              "shows": shows,
+              "isAdmin": admin
           });
           }, itemCount)
         }, itemCount);
@@ -39,17 +49,26 @@ exports.postNewItem = (req, res, next) => {
             res.render('movies/movies', {
               "pageTitle": "Movies",
               "menu": "movies",
-              "movies": movies
+              "movies": movies,
+              "isAdmin": admin
           });
         })
       };
+
+  exports.getMovieEditPage = (req, res, next) => {
+    res.render('./admin/dashboard', {
+      "pageTitle": "Edit Movie",
+      "menu": "admin"
+    });
+  };
 
   exports.getShowsPage = (req, res, next) => {
     Show.fetch((shows) => {
             res.render('shows/shows', {
               "pageTitle": "Shows",
               "menu": "shows",
-              "shows": shows
+              "shows": shows,
+              "isAdmin": admin
           });
         })
       };      

@@ -15,9 +15,7 @@ const itemsRouter = require('./routes/items');
 const errorController = require('./controllers/errors');
 
 app.use('/admin', adminRouter);
-
-app.use('/', itemsRouter);
-
+app.use(itemsRouter);
 app.use(errorController.getNotFoundPage);
 
 app.listen(3000);
