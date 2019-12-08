@@ -1,38 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const p = path.join(
-    path.dirname(process.mainModule.filename),
-    'data',
-    'shows.json'
-);
+const Item = require('./item');
 
-const getshowsFromFile = (cb, num) => {
-    fs.readFile(p, (err, fileContent) => {
-        if (err) { return cb([]); }
-        const shows = JSON.parse(fileContent);
-        if (shows.length < num) {
-            return cb(shows);
-        }
-        return cb(shows.slice(-1*num));
-    })
-}
-
-module.exports = class Movie {
-    constructor(t, p = "") {
-        this.title = t;
-        this.poster = p
-    }
-
-    save() {
-            getshowsFromFile(shows => {
-                shows.push(this);
-                fs.writeFile(p, JSON.stringify(shows), (err) => {
-                    console.log(err);
-                });
-            });
-    }
-
-    static fetch(cb, num=0) {
-        getshowsFromFile(cb, num);
-    }
-}
+module.exports = class Show extends Item{
+    constructor(t, p = "", s = {}, c={}) {
+        super(t, p = "", s = {}, c={});
+        this.type = "shows"
+    };
+};

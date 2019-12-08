@@ -1,6 +1,5 @@
-const Item = require('../models/item');
-const Movie = require('../models/movie');
-const Show = require('../models/show');
+const Movie = require('../models/movie1')
+const Show = require('../models/show')
 
 const admin = 1;
 
@@ -11,18 +10,28 @@ exports.getAdminPage = (req, res, next) => {
     });
 };
 
-exports.getItemDetailsPage = (req, res, next) => {
-  const itemId = req.params.itemId;
-  Item.findById(itemId, item => {
-    res.render('./layouts/item-details', {
-      "pageTitle": item.title,
-      "menu": item.type,
-      "title": item.title,
-      "item": item
-  })
+exports.getMovieDetailsPage = (req, res, next) => {
+  const movieId = req.params.movieId;
+  Movie.findById(movieId, movie => {
+    getDetailsPage(res, movie, "movies")
   })
 };
 
+exports.getShowDetailsPage = (req, res, next) => {
+  const showId = req.params.showId;
+  Show.findById(showId, show => {
+    getDetailsPage(res, show, "shows")
+  })
+};
+
+function getDetailsPage(res, item, menu) {  
+    res.render('./layouts/item-details', {
+    "pageTitle": item.title,
+    "menu": menu,
+    "title": item.title,
+    "item": item
+    });
+};
 
 exports.getMovieEditPage = (req, res, next) => {
   res.render('./admin/dashboard', {
@@ -33,20 +42,20 @@ exports.getMovieEditPage = (req, res, next) => {
 
 exports.postNewItem = (req, res, next) => {
     if (req.body.type === 'mov') {
-      const item = new Movie(req.body.title, req.body.poster);
-      item.save();
+      const movie = new Movie(req.body.title, req.body.poster);
+      movie.save();
     }
     else {
-      const item = new Show(req.body.title, req.body.poster);
-      item.save();
+      const show = new Show(req.body.title, req.body.poster);
+      show.save();
     }
     res.redirect('/');
   };
 
   exports.getHomePage = (req, res, next) => {
     const itemCount = 6;
-    Item.fetch((movies) => {
-          Item.fetch((shows) => {
+    Movie.fetch((movies) => {
+          Show.fetch((shows) => {
             res.render('home', {
               "pageTitle": "Main page",
               "menu": "home",
@@ -77,7 +86,7 @@ exports.postNewItem = (req, res, next) => {
   };
 
   exports.getShowsPage = (req, res, next) => {
-    Item.fetch((shows) => {
+    Show.fetch((shows) => {
             res.render('shows/shows', {
               "pageTitle": "Shows",
               "menu": "shows",

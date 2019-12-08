@@ -3,7 +3,7 @@ if movies.length > 0
         each movie in movies
             .wrapper
                 .card
-                    a.image-link(href="#")
+                    a.image-link(href="/movie/" + movie.id)
                     if movie.poster
                         img.card-image(src=movie.poster)
                     else

@@ -3,7 +3,7 @@ if shows && shows.length > 0
         each show in shows
             .wrapper
                 .card
-                    a.image-link(href="#")
+                    a.image-link(href="/show/" + show.id)
                     if show.poster
                         img.card-image(src=show.poster)
                     else

@@ -1,1 +1,27 @@
-[{"title":"234324","poster":""},{"title":"","poster":""},{"title":"","poster":""},{"title":"","poster":""},{"title":"adfasdfsdf","poster":""},{"title":"11111","poster":""},{"title":"222","poster":""},{"title":"Star Wars: Droids","poster":"https://m.media-amazon.com/images/M/MV5BYjcxZTAzOTktODAxZS00ZTgyLTgxNGMtNzRmNmI4ZDNjYWI1XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg"},{"title":"Star Wars: The Clone Wars","poster":"https://images-na.ssl-images-amazon.com/images/I/51OrTlGhLDL.jpg"},{"title":"Star Wars Rebels","poster":"https://i.pinimg.com/originals/27/90/78/27907859cf61492eb1fffd45d2478c05.jpg"},{"title":"Star Wars Resistance","poster":"https://1.bp.blogspot.com/-GFkW2P8haHk/XYwBWfU2JwI/AAAAAAAARH4/GBzLo3bOZagxp07CsMcS5crtfsgkKN-KgCLcBGAsYHQ/s1600/71295696_2678513338866917_2436811551504596992_n.jpg"},{"title":"Star Wars: The Mandalorian","poster":"https://cdn.collider.com/wp-content/uploads/2019/08/the-mandalorian-poster.jpg"}]
+[
+    {
+       "id": "1",
+       "title":"Star Wars: Droids",
+       "poster":"https://m.media-amazon.com/images/M/MV5BYjcxZTAzOTktODAxZS00ZTgyLTgxNGMtNzRmNmI4ZDNjYWI1XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg"
+    },
+    {
+       "id": "2",   
+       "title":"Star Wars: The Clone Wars",
+       "poster":"https://images-na.ssl-images-amazon.com/images/I/51OrTlGhLDL.jpg"
+    },
+    {
+       "id": "3",   
+       "title":"Star Wars Rebels",
+       "poster":"https://i.pinimg.com/originals/27/90/78/27907859cf61492eb1fffd45d2478c05.jpg"
+    },
+    {
+       "id": "4",   
+       "title":"Star Wars Resistance",
+       "poster":"https://1.bp.blogspot.com/-GFkW2P8haHk/XYwBWfU2JwI/AAAAAAAARH4/GBzLo3bOZagxp07CsMcS5crtfsgkKN-KgCLcBGAsYHQ/s1600/71295696_2678513338866917_2436811551504596992_n.jpg"
+    },
+    {
+       "id": "5",   
+       "title":"Star Wars: The Mandalorian",
+       "poster":"https://cdn.collider.com/wp-content/uploads/2019/08/the-mandalorian-poster.jpg"
+    }
+ ]

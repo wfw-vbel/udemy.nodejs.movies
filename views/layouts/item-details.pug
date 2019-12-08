@@ -1,0 +1,55 @@
+extends ../layouts/nav.pug
+
+block styles
+    link(rel="stylesheet", href="/css/details.css")
+
+block content
+    .details-wrapper
+        .poster
+            .poster-img
+                img(src= item.poster)
+        .info
+            .info-wrapper
+                .title-row
+                    .title
+                        h1
+                            span #{item.title}
+                    .flag
+                        img(src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Flag_of_the_United_States_%28Pantone%29.svg")
+                .genres
+                    P Adventure, Si-Fi, Action
+                .raiting
+                    img(src="https://upload.wikimedia.org/wikipedia/commons/1/17/Star_rating_5_of_5.png")
+                .header-info
+                    h3 Overview
+                .description
+                    p Princess Leia is captured and held hostage by the evil Imperial forces in their effort to take over the galactic Empire. Venturesome Luke Skywalker and dashing captain Han Solo team together with the loveable robot duo R2-D2 and C-3PO to rescue the beautiful princess and restore peace and justice in the Empire
+    .summary-wrapper
+        .summary
+            .item-wrapper
+                if item.summary.length > 0
+                    each row in item.summary
+                        .key
+                            p #{row.key}
+                        .value
+                            p #{row.value}
+                else
+                    h3
+                        i No know data!
+                                                  
+    .cast-wrapper
+        h3 Cast and crew
+        hr
+        .cast-cell
+            if item.cast.length > 0
+                each person in item.cast
+    
+                        .cast-item
+                            .photo
+                                img(src=person.photo)
+                            .name
+                                p #{person.name}
+                            .position
+                                p #{person.position}
+            else
+                h1 No known crew members

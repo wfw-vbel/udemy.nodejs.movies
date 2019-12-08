@@ -11,10 +11,15 @@
 
   main {
     width: 90%;
+    position: relative;
     padding-top: 3rem;
     margin: auto;
     overflow: hidden;
-    min-height: 100vh;
+    min-height: 90vh;
+}
+
+.header{
+  display:inline-block;
 }
   
 ul {
