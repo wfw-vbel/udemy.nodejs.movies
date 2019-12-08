@@ -10,34 +10,53 @@ const getItemsFromFile = (cb, num) => {
     fs.readFile(p, (err, fileContent) => {
         if (err) { return cb([]); }
         const items = JSON.parse(fileContent);
-        if (items.length < num) {
-            return cb(items);
-        }
-        return cb(items.slice(-1*num));
+        return cb(items);
     })
-}
+};
+
 
 module.exports = class Item {
-    constructor(t, p = "", s = {}, c={}) {
-        this.id = Math.round(Math.random() * 10000)
-        this.title = t;
-        this.poster = p;
-        this.summary = s;
-        this.cast = c;
+    constructor(id, title, poster = "", type, summary = {}, cast={}) {
+        this.id = id;
+        this.title = title;
+        this.poster = poster;
+        this.summary = summary;
+        this.cast = cast;
+        this.type = type;
     };
 
     save() {
-            getItemsFromFile(items => {
-                items.push(this);
-                fs.writeFile(p, JSON.stringify(items), (err) => {
-                    console.log(err);
-                });
+        getItemsFromFile(items => {
+            items.push(this);
+            fs.writeFile(p, JSON.stringify(items), (err) => {
+                console.log(err);
             });
+        });
     }
 
-    static fetch(cb, num=0) {
-        getItemsFromFile(cb, num);
-    }
+    saveChanges() {
+        getItemsFromFile(items => {
+            const existingItemIndex = items.findIndex(i => i.id == this.id);
+            items[existingItemIndex] = this;
+            fs.writeFile(p, JSON.stringify(items), (err) => {
+                console.log(err);
+            })
+        });
+    };
+
+    static deleteById(id){
+        getItemsFromFile(items => {
+        const existingItemIndex = items.findIndex(i => i.id === id);
+            items.splice(existingItemIndex, 1);
+            fs.writeFile(p, JSON.stringify(items), (err) => {
+                console.log(err);
+            });
+        });
+    };
+
+    static fetch(cb) {
+        getItemsFromFile(cb);
+      }
 
     static findById(id, cb){
         getItemsFromFile(items => {

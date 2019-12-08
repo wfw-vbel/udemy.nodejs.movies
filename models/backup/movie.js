@@ -5,5 +5,5 @@ module.exports = class Movie extends Item{
         super(t, p = "", s = {}, c={});
         this.type = "movies"
     };
-
 };
+

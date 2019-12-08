@@ -1,6 +1,4 @@
 const Item = require('../models/item');
-const Movie = require('../models/movie');
-const Show = require('../models/show');
 
 const admin = 1;
 
@@ -24,22 +22,34 @@ exports.getItemDetailsPage = (req, res, next) => {
 };
 
 
-exports.getMovieEditPage = (req, res, next) => {
-  res.render('./admin/dashboard', {
-    "pageTitle": "Edit Movie",
-    "menu": "admin"
+exports.getItemEditPage = (req, res, next) => {
+  const itemId = req.params.itemId;
+  Item.findById(itemId, item => {
+ res.render('./admin/edit-item', {
+    "pageTitle": item.title + " (edit)",
+    "menu": item.type,
+    "item": item
+    });
   });
 };
 
+exports.postEditedItem = (req, res, next) => {
+  const itemId = req.params.itemId;
+  console.log("id: "+ itemId);
+  item = new Item(itemId, req.body.title, req.body.poster, req.body.type);
+  item.saveChanges();
+  res.redirect('/');
+};
+
+exports.postDeleteItem = (req, res, next) =>{
+  const itemId = req.params.itemId;
+  Item.deleteById(itemId);
+  res.redirect('/');
+}
+
 exports.postNewItem = (req, res, next) => {
-    if (req.body.type === 'mov') {
-      const item = new Movie(req.body.title, req.body.poster);
-      item.save();
-    }
-    else {
-      const item = new Show(req.body.title, req.body.poster);
-      item.save();
-    }
+    const item = new Item(Math.round(Math.random() * 10000), req.body.title, req.body.poster, req.body.type);
+    item.save();
     res.redirect('/');
   };
 
@@ -50,8 +60,8 @@ exports.postNewItem = (req, res, next) => {
             res.render('home', {
               "pageTitle": "Main page",
               "menu": "home",
-              "movies": movies,
-              "shows": shows,
+              "movies": movies.filter(m => m.type === 'movies').slice(-6),
+              "shows": shows.filter(s => s.type === 'shows').slice(-6),
               "isAdmin": admin
           });
           }, itemCount)
@@ -59,29 +69,22 @@ exports.postNewItem = (req, res, next) => {
   }
 
   exports.getMoviesPage = (req, res, next) => {
-    Movie.fetch((movies) => {
+    Item.fetch((movies) => {
             res.render('movies/movies', {
               "pageTitle": "Movies",
               "menu": "movies",
-              "movies": movies,
+              "movies": movies.filter(m => m.type === 'movies'),
               "isAdmin": admin
           });
         })
       };
-
-  exports.getMovieEditPage = (req, res, next) => {
-    res.render('./admin/dashboard', {
-      "pageTitle": "Edit Movie",
-      "menu": "admin"
-    });
-  };
 
   exports.getShowsPage = (req, res, next) => {
     Item.fetch((shows) => {
             res.render('shows/shows', {
               "pageTitle": "Shows",
               "menu": "shows",
-              "shows": shows,
+              "shows": shows.filter(s => s.type === 'shows'),
               "isAdmin": admin
           });
         })

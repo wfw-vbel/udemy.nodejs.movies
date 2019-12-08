@@ -10,8 +10,8 @@ if movies.length > 0
                         img.card-image(src="../img/poster-placeholder.png")
                     if isAdmin
                         .pen
-                            a(href="/admin/edit")
-                        form(action="/admin/delete-item", method="POST")
+                            a(href="/movie/" + movie.id + "/edit")
+                        form(action="/movie/" + movie.id + "/delete/" , method="POST")
                             button.trash
                     else
                         .bookmark

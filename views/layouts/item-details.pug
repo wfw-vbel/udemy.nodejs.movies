@@ -27,7 +27,7 @@ block content
     .summary-wrapper
         .summary
             .item-wrapper
-                if item.summary.length > 0
+                if item.summary && item.summary.length > 0
                     each row in item.summary
                         .key
                             p #{row.key}
@@ -41,7 +41,7 @@ block content
         h3 Cast and crew
         hr
         .cast-cell
-            if item.cast.length > 0
+            if item.cast && item.cast.length > 0
                 each person in item.cast
     
                         .cast-item

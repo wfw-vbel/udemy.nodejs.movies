@@ -10,8 +10,8 @@ if shows && shows.length > 0
                         img.card-image(src="../img/poster-placeholder.png")
                     if isAdmin
                         .pen
-                            a(href="/admin/edit")
-                        form(action="/admin/delete-item", method="POST")
+                            a(href="/show/" + show.id + "/edit")
+                        form(action="/show/" + show.id + "/delete/" , method="POST")
                             button.trash
                     else
                         .bookmark
