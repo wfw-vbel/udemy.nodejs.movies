@@ -8,7 +8,7 @@ router.get('/', itemsController.getHomePage);
 
 router.get('/movies', itemsController.getMoviesPage);
 router.get('/movie/:itemId', itemsController.getItemDetailsPage);
-router.get('/movie/:itemId/edit', itemsController.getItemEditPage);
+router.get('/movie/:itemId/edit', itemsController.getMovieDetailsPage);
 router.post('/movie/:itemId/', itemsController.postEditedItem);
 router.post('/movie/:itemId/delete', itemsController.postDeleteItem);
 

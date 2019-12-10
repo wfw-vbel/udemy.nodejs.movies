@@ -1,23 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const p = path.join(
-    path.dirname(process.mainModule.filename),
-    'data',
-    'items.json'
-);
-
-const getItemsFromFile = (cb, num) => {
-    fs.readFile(p, (err, fileContent) => {
-        if (err) { return cb([]); }
-        const items = JSON.parse(fileContent);
-        return cb(items);
-    })
-};
+db = require('../data/database');
 
 
 module.exports = class Item {
-    constructor(id, title, poster = "", type, summary = {}, cast={}) {
-        this.id = id;
+    constructor(title, poster = "", type, summary = {}, cast={}) {
         this.title = title;
         this.poster = poster;
         this.summary = summary;
@@ -25,44 +10,25 @@ module.exports = class Item {
         this.type = type;
     };
 
-    save() {
-        getItemsFromFile(items => {
-            items.push(this);
-            fs.writeFile(p, JSON.stringify(items), (err) => {
-                console.log(err);
-            });
-        });
-    }
+    save(){
+        var query = ('INSERT INTO ?? (title, poster) VALUES (?, ?)');
+        var params = [this.type, this.title, this.poster];
+        return db.execute(db.format(query, params));
+    };
 
     saveChanges() {
-        getItemsFromFile(items => {
-            const existingItemIndex = items.findIndex(i => i.id == this.id);
-            items[existingItemIndex] = this;
-            fs.writeFile(p, JSON.stringify(items), (err) => {
-                console.log(err);
-            })
-        });
     };
 
     static deleteById(id){
-        getItemsFromFile(items => {
-        const existingItemIndex = items.findIndex(i => i.id === id);
-            items.splice(existingItemIndex, 1);
-            fs.writeFile(p, JSON.stringify(items), (err) => {
-                console.log(err);
-            });
-        });
     };
 
-    static fetch(cb) {
-        getItemsFromFile(cb);
-      }
+    static fetch(n=0) {
+        var query = "(SELECT *, 'movies' as type FROM movies) UNION (SELECT *, 'shows' as type FROM shows)";
+        return db.execute(query);
+    }
 
-    static findById(id, cb){
-        getItemsFromFile(items => {
-            const item = items.find(m => m.id == id);
-            cb(item);
-        });
+    static findById(id){
+
     }
 
 }

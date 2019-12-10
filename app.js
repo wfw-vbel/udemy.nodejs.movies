@@ -1,8 +1,10 @@
 const express = require('express');
+const db = require('./data/database');
 const path = require('path');
 const bodyParser = require('body-parser');
 
 const app = express();
+
 
 app.set('view engine', 'pug');
 
