@@ -1,21 +1,18 @@
-Item = require('./item');
-db = require('../data/database');
+const Sequielize = require('sequelize');
+const sequelize  = require('../data/database');
 
-module.exports = class Movie extends Item {
-    constructor(title, poster = "", type, summary = {}, cast={}) {
-        this.title = title;
-        this.poster = poster;
-        this.summary = summary;
-        this.cast = cast;
-        this.type = "movies";
-    };
+const Movie = sequelize.define('movies', {
+    id: {
+        type: Sequielize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    title: {
+        type: Sequielize.STRING,
+        allowNull: false
+    },
+    imageUrl: Sequielize.STRING
+});
 
-    static fetch() {
-        return db.execute("SELECT *, 'movies' as type FROM movies");
-    }
-
-    static findById(id) {
-        var query = 'SELECT *, "movies" as type FROM movies WHERE id = ?';
-        return(db.execute(query, [id]));
-    }
-}
+module.exports = Movie;

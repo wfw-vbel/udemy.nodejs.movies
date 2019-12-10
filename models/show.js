@@ -1,17 +1,18 @@
-Item = require('./item');
-db = require('../data/database');
+const Sequielize = require('sequelize');
+const sequelize  = require('../data/database');
 
-module.exports = class Show extends Item {
-    constructor(id, title, poster = "", type, summary = {}, cast={}) {
-        this.id = id;
-        this.title = title;
-        this.poster = poster;
-        this.summary = summary;
-        this.cast = cast;
-        this.type = type;
-    };
+const Show = sequelize.define('shows', {
+    id: {
+        type: Sequielize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    title: {
+        type: Sequielize.STRING,
+        allowNull: false
+    },
+    imageUrl: Sequielize.STRING
+});
 
-    static fetch() {
-        return db.execute("SELECT *, 'shows' as type FROM shows");
-    }
-}
+module.exports = Show;

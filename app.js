@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('./data/database');
+const sequelize = require('./data/database');
 const path = require('path');
 const bodyParser = require('body-parser');
 
@@ -20,4 +20,10 @@ app.use('/admin', adminRouter);
 app.use(itemsRouter);
 app.use(errorController.getNotFoundPage);
 
-app.listen(3000);
+sequelize
+    .sync().then(result => {
+        // console.log(result);
+        app.listen(3000);
+    }).catch(err => {
+        console.log(err);
+    })

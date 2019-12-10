@@ -4,14 +4,14 @@ if shows && shows.length > 0
             .wrapper
                 .card
                     a.image-link(href="/show/" + show.id)
-                    if show.poster
-                        img.card-image(src=show.poster)
+                    if show.imageUrl
+                        img.card-image(src=show.imageUrl)
                     else
                         img.card-image(src="../img/poster-placeholder.png")
                     if isAdmin
                         .pen
-                            a(href="/show/" + show.id + "/edit")
-                        form(action="/show/" + show.id + "/delete/" , method="POST")
+                            a(href="/admin/show/" + show.id + "/edit")
+                        form(action="/admin/show/" + show.id + "/delete/" , method="POST")
                             button.trash
                     else
                         .bookmark
