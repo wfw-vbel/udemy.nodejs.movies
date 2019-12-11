@@ -10,13 +10,14 @@ exports.getAdminPage = (req, res, next) => {
 
 exports.postNewItem = (req, res, next) => {
   if (req.body.type === 'movies') {
-    Movie.create({ title: req.body.title, imageUrl: req.body.poster })
+    console.log("User: " + req.user);
+    req.user.createMovie({ title: req.body.title, imageUrl: req.body.poster })
     .then(res.redirect('/')).catch(err => {
       console.log(err);
     });
   }
   if (req.body.type === 'shows') {
-      Show.create({ title: req.body.title, imageUrl: req.body.poster })
+      req.user.createShow({ title: req.body.title, imageUrl: req.body.poster })
       .then(res.redirect('/')).catch(err => {
         console.log(err);
       });

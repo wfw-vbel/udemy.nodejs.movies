@@ -1,14 +1,13 @@
-const Item = require('../models/item');
 const Movie = require('../models/movie');
 const Show = require('../models/show');
 
-const admin = 1;
+const admin = 0;
   
   exports.getHomePage = (req, res, next) => {
     const itemCount = 6;
     Movie.findAll({limit: itemCount, order: [['createdAt', 'DESC']]})
       .then(movies => {
-        Show.findAll({limit: itemCount})
+        Show.findAll({limit: itemCount, order: [['createdAt', 'DESC']]})
           .then(shows => {
             res.render('home', {
               "pageTitle": "Main page",
@@ -88,4 +87,61 @@ exports.getShowDetailsPage = (req, res, next) => {
     .catch(err => {
       console.log(err);
   });
+};
+
+exports.getFavorite = (req, res, next) => {
+  req.user.getFavorite()
+    .then(favorite => {
+      return favorite
+        .getMovies()
+          .then(movies => {
+            res.render('movies/movies', {
+              pageTitle: "Favorites",
+              "menu": "favorite",
+              "movies": movies
+            })
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    })
+    .catch(err => (
+      console.log(err)
+    ));
+};
+
+exports.postFavoriteMovie = (req, res, next) => {
+  const itemId = req.params.itemId;
+  console.log("itemid = " + itemId);
+  let fetchedFavorites;
+  req.user.getFavorite()
+    .then(favorite =>{
+      fetchedFavorites = favorite;
+      return favorite.getMovies({where: {id: itemId}});
+    })
+    .then(items => {
+      let item;
+      if (items.length > 0) {
+        item = items[0];
+      }
+      if (item){
+        console.log("try to destroy");
+        return item.favoriteItem.destroy();
+      }
+      return Movie.findByPk(itemId)
+        .then(item => {
+          console.log("try to add");
+          return fetchedFavorites.addMovie(item);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    })
+    .then(() => {
+      console.log("REFRESH");
+      res.redirect('back')}
+      )
+    .catch(err => {
+      console.log(err);
+    });
 };

@@ -14,8 +14,8 @@ if movies.length > 0
                         form(action="/admin/movie/" + movie.id + "/delete/" , method="POST")
                             button.trash
                     else
-                        .bookmark
-                            a(href="#22")
+                        form(action="/movie/" + movie.id + "/favorite/" , method="POST")
+                            button.bookmark
                 .title #{movie.title}
 else
     h1 No movies added yet!

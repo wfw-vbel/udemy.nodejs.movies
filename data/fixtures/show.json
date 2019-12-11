@@ -1,34 +1,34 @@
 [
     {
-        "model": "shows",
+        "model": "show",
         "data": {
             "title": "The Mandalorian",
             "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/BbNvKCuEF4SRzFXR16aK6ISFtR.jpg"
         }
     },
     {
-        "model": "shows",
+        "model": "show",
         "data": {
             "title": "Chernobyl",
             "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/hlLXt2tOPT6RRnjiUmoxyG1LTFi.jpg"
         }        
     },
     {
-        "model": "shows",
+        "model": "show",
         "data": {
             "title": "Breaking Bad",
             "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/1yeVJox3rjo2jBKrrihIMj7uoS9.jpg"
         }
     },
     {
-        "model": "shows",
+        "model": "show",
         "data": {
             "title": "The Expanse",
             "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/wikmaI7OVqmq2O9HfknkzxX6Ygu.jpg"
         }
     },
     {
-        "model": "shows",
+        "model": "show",
         "data": {
             "title": "The Witcher",
             "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/zrPpUlehQaBf8YX2NrVrKK8IEpf.jpg"

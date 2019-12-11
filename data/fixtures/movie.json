@@ -1,41 +1,41 @@
 [
     {
-        "model": "movies",
+        "model": "movie",
         "data": {
             "title": "Star Wars",
             "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tvSlBzAdRE29bZe5yYWrJ2ds137.jpg"
         }
     },
     {
-        "model": "movies",
+        "model": "movie",
         "data": {
             "title": "The Empire Strikes Back",
             "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/6u1fYtxG5eqjhtCPDx04pJphQRW.jpg"
         }
     },
     {
-        "model": "movies",
+        "model": "movie",
         "data": {
             "title": "Return of the Jedi",
             "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/5wDrNqePjb5SOucrWQwiFu340vv.jpg"
         }
     },    
     {
-        "model": "movies",
+        "model": "movie",
         "data": {
             "title": "The Butterfly Effect",
             "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/gXnNltCrm5feEEa3BytYy6jwF6v.jpg"
         }
     },
     {
-        "model": "movies",
+        "model": "movie",
         "data": {
             "title": "The Game",
             "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/reLfX4fIasqLXCdgZ7vnnYWYhe3.jpg"
         }
     },
     {
-        "model": "movies",
+        "model": "movie",
         "data": {
             "title": "Seven Pounds",
             "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/fwtAsR44JLciHexaC0t6a087czI.jpg"

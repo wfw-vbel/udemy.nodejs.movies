@@ -1,18 +1,18 @@
 const Sequielize = require('sequelize');
-const sequelize  = require('../data/database');
+const sequelize = require('../data/database');
 
-const Movie = sequelize.define('movie', {
+const User = sequelize.define('user', {
     id: {
         type: Sequielize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    title: {
+    username: {
         type: Sequielize.STRING,
         allowNull: false
     },
-    imageUrl: Sequielize.STRING
+    email: Sequielize.STRING
 });
 
-module.exports = Movie;
+module.exports = User;

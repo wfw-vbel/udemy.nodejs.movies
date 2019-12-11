@@ -85,23 +85,31 @@ background-size: contain;
   background-size: contain;
   }
 
-.trash {
+.trash, .bookmark {
 width: 20px;
 height: 20px;
-position: absolute;
 opacity: 0;
-left: 15px;
-top: 15px;
 background: none;
-background-image: url("/img/wtrash.png");
 background-size: contain;
 border: none;
 padding: 0 0;
 outline: none;
 }
 
+.trash {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  background-image: url("/img/wtrash.png");
+}
+
+.bookmark {
+  background-image: url("/img/wbook.png");
+}
+
 .trash:hover {
   cursor: pointer;
+  background-image: url("/img/rtrash.png");
 }
 
 .pen:hover{
@@ -109,11 +117,8 @@ outline: none;
 }
 
 .bookmark:hover{
+  cursor: pointer;
   background-image: url("/img/gbook.png");
-}
-
-.trash:hover{
-  background-image: url("/img/rtrash.png");
 }
 
 .trash a, 
