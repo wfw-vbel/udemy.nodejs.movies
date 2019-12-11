@@ -4,7 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const app = express();
-
+const sequelize_fixtures = require('sequelize-fixtures');
 
 app.set('view engine', 'pug');
 
@@ -21,7 +21,11 @@ app.use(itemsRouter);
 app.use(errorController.getNotFoundPage);
 
 sequelize
-    .sync().then(result => {
+    .sync()
+    .then(() =>{
+        sequelize_fixtures.loadFile(path.join(__dirname, 'data', 'fixtures', '*.json'),sequelize.models);
+    })
+    .then(result => {
         // console.log(result);
         app.listen(3000);
     }).catch(err => {
