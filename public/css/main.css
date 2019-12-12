@@ -38,6 +38,10 @@ li {
   float: left;
 }
 
+li.hide{
+  display: none;
+}
+
 .right {
     float: right;   
 }

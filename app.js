@@ -46,11 +46,12 @@ Favorite.belongsToMany(Movie, {through: FavoriteItem});
 
 sequelize
     .sync(
-        // {force: true}
-    )
+    //     {force: true}
+    // )
     // .then(() =>{
     //     sequelize_fixtures.loadFile(path.join(__dirname, 'data', 'fixtures', '*.json'),sequelize.models);
-    // })
+    // }
+    )
     .then(result => {
         var user = User.findByPk(1);
         return user;

@@ -6,8 +6,8 @@ const sequelize = new Sequelize(
     'EXua8ups1',
     {
         dialect: 'mysql',
-        host: 'localhost',
-        logging: false
+        host: 'localhost'
+        ,logging: false
     });
 
 module.exports = sequelize;

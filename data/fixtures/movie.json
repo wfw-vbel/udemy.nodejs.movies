@@ -3,7 +3,13 @@
         "model": "movie",
         "data": {
             "title": "Star Wars",
-            "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tvSlBzAdRE29bZe5yYWrJ2ds137.jpg"
+            "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tvSlBzAdRE29bZe5yYWrJ2ds137.jpg",
+            "status": "Released",
+            "release_date": "1977-09-25",
+            "language": "English",
+            "duration": 121,
+            "budget": 11000000,
+            "revenue": 775340000
         }
     },
     {

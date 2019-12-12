@@ -12,7 +12,13 @@ const Movie = sequelize.define('movie', {
         type: Sequielize.STRING,
         allowNull: false
     },
-    imageUrl: Sequielize.STRING
+    imageUrl: Sequielize.STRING,
+    status: Sequielize.STRING,
+    release_date: Sequielize.DATEONLY,
+    language: Sequielize.STRING,
+    duration: Sequielize.INTEGER,
+    budget: Sequielize.INTEGER,
+    revenue: Sequielize.INTEGER
 });
 
 module.exports = Movie;
