@@ -95,6 +95,10 @@
     margin: 5px 40px;
 }
 
+.description{
+    text-align: justify;
+}
+
 p {
     margin-top: 0px;
 }

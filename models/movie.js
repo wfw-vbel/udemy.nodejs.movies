@@ -18,7 +18,8 @@ const Movie = sequelize.define('movie', {
     language: Sequielize.STRING,
     duration: Sequielize.INTEGER,
     budget: Sequielize.INTEGER,
-    revenue: Sequielize.INTEGER
+    revenue: Sequielize.INTEGER,
+    description: Sequielize.TEXT
 });
 
 module.exports = Movie;

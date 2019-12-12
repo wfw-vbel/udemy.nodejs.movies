@@ -59,8 +59,21 @@ const admin = 0;
 
 exports.getMovieDetailsPage = (req, res, next) => {
   const id = req.params.itemId;
+  let item = {};
   Movie.findByPk(id)
-    .then(item => {
+    .then(movie => {
+      item.title = movie.title;
+      item.imageUrl = movie.imageUrl;
+      item.description = movie.description;
+      item.summary = [
+        {key: "Status", value: movie.status},
+        {key: "Release Date", value: movie.release_date},
+        {key: "Original language", value: movie.language},
+        {key: "Duration", value: Math.floor(movie.duration/60) + "h " + movie.duration%60 + "m"},
+        {key: "Budget", value: "$ " + movie.budget.toLocaleString()},
+        {key: "Revenue", value: "$ " + movie.revenue.toLocaleString()}
+      ]
+      console.log(item)
       res.render('./layouts/item-details', {
         "pageTitle": item.title,
         "menu": "movies",
