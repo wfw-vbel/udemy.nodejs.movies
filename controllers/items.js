@@ -1,26 +1,28 @@
 const Movie = require('../models/movie');
 const Show = require('../models/show');
+const Genre = require('../models/genre');
 
 const admin = 0;
   
   exports.getHomePage = (req, res, next) => {
     const itemCount = 6;
-    Movie.findAll({limit: itemCount, order: [['createdAt', 'DESC']]})
-      .then(movies => {
-        Show.findAll({limit: itemCount, order: [['createdAt', 'DESC']]})
-          .then(shows => {
-            res.render('home', {
+
+    Promise.all([
+      Movie.findAll({limit: itemCount, order: [['createdAt', 'DESC']]}),
+      Show.findAll({limit: itemCount, order: [['createdAt', 'DESC']]})
+    ])
+    .then(items => {
+      res.render('home', {
               "pageTitle": "Main page",
               "menu": "home",
-              "movies": movies,
-              "shows": shows,
+              "movies": items[0],
+              "shows": items[1],
               "isAdmin": admin
-            })
-          })
-          .catch(err => {
-            console.log(err);
-          })
       })
+    })
+    .catch(err=>{
+      console.log(err);
+    });
   };
 
   exports.getMoviesPage = (req, res, next) => {
@@ -62,27 +64,38 @@ exports.getMovieDetailsPage = (req, res, next) => {
   let item = {};
   Movie.findByPk(id)
     .then(movie => {
-      item.title = movie.title;
-      item.imageUrl = movie.imageUrl;
-      item.description = movie.description;
-      item.summary = [
-        {key: "Status", value: movie.status},
-        {key: "Release Date", value: movie.release_date},
-        {key: "Original language", value: movie.language},
-        {key: "Duration", value: Math.floor(movie.duration/60) + "h " + movie.duration%60 + "m"},
-        {key: "Budget", value: "$ " + movie.budget.toLocaleString()},
-        {key: "Revenue", value: "$ " + movie.revenue.toLocaleString()}
-      ]
-      console.log(item)
-      res.render('./layouts/item-details', {
-        "pageTitle": item.title,
-        "menu": "movies",
-        "title": item.title,
-        "item": item
+      movie.getGenres().then(genres => {
+        movie.genres = []
+        for (const i of genres) {
+          //movie.genres = movie.genres + i.name + " "
+          movie.genres.push(i.name);
+        }
+        return movie
+      })
+      .then(movie => {
+        item.title = movie.title;
+        item.imageUrl = movie.imageUrl;
+        item.description = movie.description;
+        item.rating = movie.rating,
+        item.genres = movie.genres
+        item.summary = [
+          {key: "Status", value: movie.status},
+          {key: "Release Date", value: movie.release_date},
+          {key: "Original language", value: movie.language},
+          {key: "Duration", value: Math.floor(movie.duration/60) + "h " + movie.duration%60 + "m"},
+          {key: "Budget", value: movie.budget? "$ " + movie.budget.toLocaleString(): null},
+          {key: "Revenue", value: movie.budget? "$ " + movie.revenue.toLocaleString(): null}
+        ]
+        res.render('./layouts/item-details', {
+          "pageTitle": item.title,
+          "menu": "movies",
+          "title": item.title,
+          "item": item
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
-    })
-    .catch(err => {
-      console.log(err);
   });
 };
 

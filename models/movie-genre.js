@@ -1,13 +1,13 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../data/database');
 
-const Favorite = sequelize.define('favorite', {
+const MovieGenre = sequelize.define('movieGenre', {
     id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         autoIncrement: true,
+        allowNull: false,
         primaryKey: true
     }
 });
 
-module.exports = Favorite;
+module.exports = MovieGenre;

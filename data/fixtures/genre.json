@@ -1,0 +1,9 @@
+[
+    {
+        "model": "genre",
+        "data": {
+            "id": 1,
+            "name": "Action"
+        }
+    }
+]

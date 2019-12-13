@@ -89,13 +89,15 @@
 .title-row, 
 .genres, 
 .raiting,
-.header-info, 
-.description {
+.header-info
+ {
     width: 100%;
     margin: 5px 40px;
 }
 
 .description{
+    width: 100%;
+    margin: 5px 0px;
     text-align: justify;
 }
 
@@ -162,3 +164,15 @@ p {
     margin-top: 0px;
 }
 
+.genre {
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: rgb(72, 72, 72);
+    display: inline-block;
+    margin-left: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: white;
+    font-weight: bold;
+
+}

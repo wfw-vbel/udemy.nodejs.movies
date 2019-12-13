@@ -8,6 +8,8 @@ const Show = require('./models/show');
 const User = require('./models/user');
 const Favorite = require('./models/fav');
 const FavoriteItem = require('./models/fav-item');
+const Genre = require('./models/genre');
+const MovieGenre = require('./models/movie-genre');
 
 const app = express();
 const sequelize_fixtures = require('sequelize-fixtures');
@@ -43,6 +45,7 @@ Movie.belongsTo(User, {foreignKey: {allowNull: true }});
 Show.belongsTo(User, {foreignKey: {allowNull: true }});
 User.hasOne(Favorite);
 Favorite.belongsToMany(Movie, {through: FavoriteItem});
+Movie.belongsToMany(Genre, {through: MovieGenre});
 
 sequelize
     .sync(
