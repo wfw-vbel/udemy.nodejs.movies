@@ -22,10 +22,19 @@ block content
                         .genre
                             span #{genre}
                 .raiting
-                    if item.rating
-                        .stars(style="--rating: " + item.rating + ";", title=item.rating)
-                    else
-                        h3 Not rated yet!
+                
+                    //- if item.rating
+
+                    .container
+                        .progress
+                            -var pr = item.rating ? item.rating : 0;
+                            -var fm = pr <= 20 ? 0 : pr <= 40 ? 60 : pr <= 60 ? 120 : pr <= 80 ? 180 : 240;
+                            -var sl = pr <= 60 ? 240 : pr <= 80 ? 120 : 0;
+                            -var sm = pr <= 20 ? 60 : pr <= 40 ? 120 : 240;
+                            .progress-bar(style=("--rating: " + pr + "; --fm: " + fm + "; --sl:" + sl + "; --sm:" + sm))
+                                p #{item.rating}
+                    //- else
+                    //-     h3 Not rated yet!
                 .header-info
                     if item.description
                         h3 Overview

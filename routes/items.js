@@ -3,16 +3,18 @@ const express = require('express');
 const router = express.Router();
 
 const itemsController = require('../controllers/items');
+const movieController = require('../controllers/movies');
+const showController = require('../controllers/shows');
 
 router.get('/', itemsController.getHomePage);
 
-router.get('/movies', itemsController.getMoviesPage);
-router.get('/movie/:itemId', itemsController.getMovieDetailsPage);
-router.post('/movie/:itemId/favorite', itemsController.postFavoriteMovie);
+router.get('/movies', movieController.getMoviesPage);
+router.get('/movie/:itemId', movieController.getMovieDetailsPage);
+router.post('/movie/:itemId/favorite', movieController.postFavoriteMovie);
 
 
-router.get('/shows', itemsController.getShowsPage);
-router.get('/show/:itemId', itemsController.getShowDetailsPage);
+router.get('/shows', showController.getShowsPage);
+router.get('/show/:itemId', showController.getShowDetailsPage);
 
 
 router.get('/persons', itemsController.getPersonsPage);

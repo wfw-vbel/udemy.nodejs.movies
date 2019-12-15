@@ -70,6 +70,11 @@
 .title{
     float: left;
     line-height: 200%;
+    display: flex;
+}
+
+.title h1 {
+    align-self: flex-end;
 }
 
 

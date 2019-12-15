@@ -12,7 +12,15 @@ const Show = sequelize.define('show', {
         type: Sequielize.STRING,
         allowNull: false
     },
-    imageUrl: Sequielize.STRING
+    imageUrl: Sequielize.STRING,
+    status: Sequielize.STRING,
+    year_started: Sequielize.INTEGER,
+    year_finished: Sequielize.INTEGER,
+    seasons: Sequielize.INTEGER,
+    language: Sequielize.STRING,
+    runtime: Sequielize.INTEGER,
+    description: Sequielize.TEXT,
+    rating: Sequielize.DOUBLE   
 });
 
 module.exports = Show;

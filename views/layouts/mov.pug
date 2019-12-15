@@ -15,7 +15,7 @@ if movies.length > 0
                             button.trash
                     else
                         form(action="/movie/" + movie.id + "/favorite/" , method="POST")
-                            button.bookmark
+                            checkbox.bookmark
                 .title #{movie.title}
 else
     h1 No movies added yet!
