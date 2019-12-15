@@ -1,0 +1,17 @@
+extends ../layouts/nav.pug
+
+block styles
+    link(rel="stylesheet", href="/css/forms.css")
+
+block content    
+    form.add-form(action="/admin/add-movie", method="POST")
+        .form-control
+            label(for="title") Title
+            input(type="text", name="title", id="title")
+            label(for="poster") Poster link
+            input(type="text", name="imageUrl", id="imageUrl")
+            label(for="type") Type
+            select(name="type")
+                option(value='movies') Movie
+                option(value="shows") TV Show
+        button.btn(type="submit") Add Product

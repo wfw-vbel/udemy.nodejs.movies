@@ -1,0 +1,17 @@
+extends ../layouts/nav.pug
+
+block styles
+    link(rel="stylesheet", href="/css/forms.css")
+
+block content    
+    form.add-form(action=("".concat((item.type === 'movies' ? "/admin/movie/" : "/admin/show/"), item.id)), method="POST")
+        .form-control
+            label(for="title") Title
+            input(type="text", name="title", id="title" value=item.title)
+            label(for="poster") Poster link
+            input(type="text", name="imageUrl", id="imageUrl", value=item.imageUrl)
+            label(for="type") Type
+            select(name="type" disabled)
+                option(value="movies", selected=(item.type === "movies" ? true : false)) Movie
+                option(value="shows", selected=(item.type === "shows" ? true : false)) TV Show
+        button.btn(type="submit") Save changes
