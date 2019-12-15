@@ -3,7 +3,14 @@
         "model": "show",
         "data": {
             "title": "The Mandalorian",
-            "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/BbNvKCuEF4SRzFXR16aK6ISFtR.jpg"
+            "imageUrl": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/BbNvKCuEF4SRzFXR16aK6ISFtR.jpg",
+            "status": "Ongoing",
+            "year_started": 2019,
+            "seasons": 1,
+            "language": "English",
+            "runtime": 35,
+            "description": "Set after the fall of the Empire and before the emergence of the First Order, we follow the travails of a lone gunfighter in the outer reaches of the galaxy far from the authority of the New Republic.",
+            "rating": 78
         }
     },
     {

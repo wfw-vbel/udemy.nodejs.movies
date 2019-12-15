@@ -15,6 +15,7 @@ router.post('/movie/:itemId/favorite', movieController.postFavoriteMovie);
 
 router.get('/shows', showController.getShowsPage);
 router.get('/show/:itemId', showController.getShowDetailsPage);
+router.post('/show/:itemId/favorite', showController.postFavoriteShow);
 
 
 router.get('/persons', itemsController.getPersonsPage);

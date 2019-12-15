@@ -54,59 +54,6 @@
   }
 
   .progress > .progress-bar {
-      /* --wdt:  */
-      --mg: 2
-      
-  }
-
-  .progress > .progress-bar {
       width: calc(var(--rating) * 1%);
-      /* background    : linear-gradient(to right, rgba(250, 0, 0) , rgba(250, 0,   0),    rgba(250, 0  , 0));     
-      background    : linear-gradient(to right, rgba(250, 0, 0) , rgba(250, 125, 0),    rgba(250, 125, 0));     
-      background    : linear-gradient(to right, rgba(250, 0, 0) , rgba(250, 125, 0),    rgba(125, 250, 0));     
-      background    : linear-gradient(to right, rgba(250, 0, 0) , rgba(250, 250, 0),    rgba(125, 250, 0));     */
       background    : linear-gradient(to right, rgba(250, 0, 0) , rgba(250, var(--fm), 0), rgba(var(--sl),   var(--sm), 0));
-
-      /* background    : linear-gradient(to right, rgba(250, 0, 0) , rgba(250, (calc(var(--mg))*125), 0),    rgba(0,   250, 0));        */
-      
-      /*
-            20 -> 0, 40-60 -> 1, 60-100 -> 2
-            1 -> 0, 2-3 -> 1, 4-5 -> 3   100/20 + 1
-
-
-
-      */
   }
-  
-  /*
-   * Note: using adjacent or general sibling selectors combined with
-   *       pseudo classes doesn't work in Safari 5.0 and Chrome 12.
-   *       See this article for more info and a potential fix:
-   *       https://css-tricks.com/webkit-sibling-bug/
-   */
-  
-  /* #five:checked ~ .progress > .progress-bar {
-    width: 5%;
-    background-color: #f63a0f;
-  }
-  
-  #twentyfive:checked ~ .progress > .progress-bar {
-    width: 25%;
-    background-color: #f27011;
-  }
-  
-  #fifty:checked ~ .progress > .progress-bar {
-    width: 50%;
-    background-color: #f2b01e;
-  }
-  
-  #seventyfive:checked ~ .progress > .progress-bar {
-    width: 75%;
-    background-color: #f2d31b;
-  }
-  
-  #onehundred:checked ~ .progress > .progress-bar {
-    width: 100%;
-    background-color: #86e01e;
-  }
-   */

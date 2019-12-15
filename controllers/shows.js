@@ -1,9 +1,14 @@
 const Show = require('../models/show');
+const Favorite = require('../models/fav');
 
 const admin = 0;
 
   exports.getShowsPage = (req, res, next) => {
-    Show.findAll().then(shows => {
+    Show.findAll({ include: [ {
+      model: Favorite,
+      where: {userId: req.user.id},
+      required:false
+} ] }).then(shows => {
       res.render('shows/shows', {
         "pageTitle": "Shows",
         "menu": "shows",
@@ -18,33 +23,32 @@ const admin = 0;
   exports.getShowDetailsPage = (req, res, next) => {
     const id = req.params.itemId;
     let item = {};
-    Movie.findByPk(id)
-      .then(movie => {
-        movie.getGenres().then(genres => {
-          movie.genres = []
+    Show.findByPk(id)
+      .then(show => {
+        show.getGenres().then(genres => {
+          show.genres = []
           for (const i of genres) {
-            //movie.genres = movie.genres + i.name + " "
-            movie.genres.push(i.name);
+            show.genres.push(i.name);
           }
-          return movie
+          return show
         })
-        .then(movie => {
-          item.title = movie.title;
-          item.imageUrl = movie.imageUrl;
-          item.description = movie.description;
-          item.rating = movie.rating,
-          item.genres = movie.genres
+        .then(show => {
+          item.title = show.title;
+          item.imageUrl = show.imageUrl;
+          item.description = show.description;
+          item.rating = show.rating,
+          item.genres = show.genres
           item.summary = [
-            {key: "Status", value: movie.status},
-            {key: "Release Date", value: movie.release_date},
-            {key: "Original language", value: movie.language},
-            {key: "Duration", value: Math.floor(movie.duration/60) + "h " + movie.duration%60 + "m"},
-            {key: "Budget", value: movie.budget? "$ " + movie.budget.toLocaleString(): null},
-            {key: "Revenue", value: movie.budget? "$ " + movie.revenue.toLocaleString(): null}
+            {key: "Status", value: show.status},
+            {key: "Started", value: show.year_started},
+            {key: "Finished", value: show.year_started},
+            {key: "Seasons", value: show.seasons},
+            {key: "Original language", value: show.language},
+            {key: "Runtime", value: Math.floor(show.duration/60) + "h " + show.duration%60 + "m"},
           ]
           res.render('./layouts/item-details', {
             "pageTitle": item.title,
-            "menu": "movies",
+            "menu": "shows",
             "title": item.title,
             "item": item
           });
@@ -53,4 +57,35 @@ const admin = 0;
           console.log(err);
         });
     });
+  };
+
+  exports.postFavoriteShow = (req, res, next) => {
+    const itemId = req.params.itemId;
+    let fetchedFavorites;
+    req.user.getFavorite()
+      .then(favorite =>{
+        fetchedFavorites = favorite;
+        return favorite.getShows({where: {id: itemId}});
+      })
+      .then(items => {
+        let item;
+        if (items.length > 0) {
+          item = items[0];
+        }
+        if (item){
+          return item.favoriteItem.destroy();
+        }
+        return Show.findByPk(itemId)
+          .then(item => {
+            return fetchedFavorites.addShow(item);
+          })
+          .catch(err => {
+          })
+      })
+      .then(() => {
+        res.redirect('back')}
+        )
+      .catch(err => {
+        console.log(err);
+      });
   };

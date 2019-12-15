@@ -1,5 +1,6 @@
 const Movie = require('../models/movie');
 const Show = require('../models/show');
+const Favorite = require('../models/fav');
 
 const admin = 0;
   
@@ -7,9 +8,25 @@ const admin = 0;
     const itemCount = 6;
 
     Promise.all([
-      Movie.findAll({limit: itemCount, order: [['createdAt', 'DESC']]}),
-      Show.findAll({limit: itemCount, order: [['createdAt', 'DESC']]})
-    ])
+      Movie.findAll({ 
+        limit: itemCount,
+        order: [['createdAt', 'DESC']],
+        include: [{
+          model: Favorite,
+          where: {userId: req.user.id},
+          required:false
+          }]
+         }),
+      Show.findAll({ 
+          limit: itemCount,
+          order: [['createdAt', 'DESC']],
+          include: [{
+            model: Favorite,
+            where: {userId: req.user.id},
+            required:false
+            }]
+           })
+      ])
     .then(items => {
       res.render('home', {
               "pageTitle": "Main page",
@@ -32,28 +49,36 @@ const admin = 0;
     });
 };
 
-
-
-
-
-
 exports.getFavorite = (req, res, next) => {
-  req.user.getFavorite()
+  Promise.all([
+    req.user.getFavorite()
     .then(favorite => {
-      return favorite
-        .getMovies()
-          .then(movies => {
-            res.render('movies/movies', {
-              pageTitle: "Favorites",
-              "menu": "favorite",
-              "movies": movies
-            })
+      return favorite.getMovies({ include: [ {
+          model: Favorite,
+          where: {userId: req.user.id},
+          required:false
+          }] 
+      })
+    }),
+      req.user.getFavorite()
+      .then(favorite => {
+        return favorite.getShows({ include: [ {
+            model: Favorite,
+            where: {userId: req.user.id},
+            required:false
+            }] 
+        })
+      })
+    ])
+    .then(items => {
+        res.render('home', {
+          pageTitle: "Favorites",
+          "menu": "favorite",
+          "movies": items[0],
+          "shows": items[1]
+        })
           })
-          .catch(err => {
-            console.log(err);
-          });
-    })
-    .catch(err => (
-      console.log(err)
-    ));
+    .catch(err => {
+      console.log(err);
+    });
 };

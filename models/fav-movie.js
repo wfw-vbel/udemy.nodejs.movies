@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../data/database');
 
-const FavoriteItem = sequelize.define('favoriteItem', {
+const FavoriteMovie = sequelize.define('favoriteMovie', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -10,4 +10,4 @@ const FavoriteItem = sequelize.define('favoriteItem', {
     }
 });
 
-module.exports = FavoriteItem;
+module.exports = FavoriteMovie;

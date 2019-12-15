@@ -1,5 +1,4 @@
 const Movie = require('../models/movie');
-const FavoriteItem = require('../models/fav-item');
 const Favorite = require('../models/fav');
 
 const admin = 0;
@@ -32,7 +31,6 @@ exports.getMoviesPage = (req, res, next) => {
         movie.getGenres().then(genres => {
           movie.genres = []
           for (const i of genres) {
-            //movie.genres = movie.genres + i.name + " "
             movie.genres.push(i.name);
           }
           return movie

@@ -76,3 +76,10 @@ li a:hover:not(.active) {
     min-height: 20px;
     vertical-align: middle;
 }
+
+.isDisabled {
+  color: lightgray;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}

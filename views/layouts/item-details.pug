@@ -45,9 +45,9 @@ block content
             .item-wrapper
                 if item.summary && item.summary.length > 0
                     each row in item.summary
-                        .key
+                        .key(style=(row.value ? "" : "display:none;"))
                             p #{row.key}
-                        .value
+                        .value(style=(row.value ? "" : "display:none;"))
                             p #{row.value}
                 else
                     h3
