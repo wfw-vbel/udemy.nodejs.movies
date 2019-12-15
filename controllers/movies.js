@@ -1,16 +1,25 @@
 const Movie = require('../models/movie');
+const FavoriteItem = require('../models/fav-item');
+const Favorite = require('../models/fav');
 
 const admin = 0;
 
 exports.getMoviesPage = (req, res, next) => {
-    Movie.findAll().then(movies => {
-      res.render('movies/movies', {
-        "pageTitle": "Movies",
-        "menu": "movies",
-        "movies": movies,
-        "isAdmin": admin
-      });
-    }).catch(err=>{
+    Movie.findAll({ include: [ {
+              model: Favorite,
+              where: {userId: req.user.id},
+              required:false
+    } ] })
+      .then(movies => {
+        // console.log(JSON.stringify(movies))
+        res.render('movies/movies', {
+          "pageTitle": "Movies",
+          "menu": "movies",
+          "movies": movies,
+          "isAdmin": admin
+        });
+    })
+      .catch(err=>{
       console.log(err);
     });
   };
@@ -57,7 +66,6 @@ exports.getMoviesPage = (req, res, next) => {
 
   exports.postFavoriteMovie = (req, res, next) => {
     const itemId = req.params.itemId;
-    console.log("itemid = " + itemId);
     let fetchedFavorites;
     req.user.getFavorite()
       .then(favorite =>{
@@ -70,20 +78,16 @@ exports.getMoviesPage = (req, res, next) => {
           item = items[0];
         }
         if (item){
-          console.log("try to destroy");
           return item.favoriteItem.destroy();
         }
         return Movie.findByPk(itemId)
           .then(item => {
-            console.log("try to add");
             return fetchedFavorites.addMovie(item);
           })
           .catch(err => {
-            console.log(err);
           })
       })
       .then(() => {
-        console.log("REFRESH");
         res.redirect('back')}
         )
       .catch(err => {

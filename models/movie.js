@@ -23,4 +23,5 @@ const Movie = sequelize.define('movie', {
     rating: Sequielize.DOUBLE
 });
 
+
 module.exports = Movie;

@@ -45,6 +45,7 @@ Movie.belongsTo(User, {foreignKey: {allowNull: true }});
 Show.belongsTo(User, {foreignKey: {allowNull: true }});
 User.hasOne(Favorite);
 Favorite.belongsToMany(Movie, {through: FavoriteItem});
+Movie.belongsToMany(Favorite, {through: FavoriteItem});
 Movie.belongsToMany(Genre, {through: MovieGenre});
 
 sequelize

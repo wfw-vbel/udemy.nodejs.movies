@@ -57,6 +57,7 @@
 
 .card:hover .pen, 
 .card:hover .bookmark, 
+.card:hover .bookmark-checked, 
 .card:hover .trash {
   transition: 1s;
   opacity: 1;
@@ -74,18 +75,17 @@ background-image: url("/img/wpen.png");
 background-size: contain;
 }
 
-.bookmark {
+.bookmark, .bookmark-checked {
   width: 20px;
   height: 20px;
   position: absolute;
   opacity: 0;
   right: 15px;
   top: 15px;
-  background-image: url("/img/wbook.png");
   background-size: contain;
   }
 
-.trash, .bookmark {
+.trash, .bookmark, .bookmark-checked {
 width: 20px;
 height: 20px;
 opacity: 0;
@@ -107,6 +107,11 @@ outline: none;
   background-image: url("/img/wbook.png");
 }
 
+.bookmark-checked {
+  background-image: url("/img/gbook.png");
+}
+
+
 .trash:hover {
   cursor: pointer;
   background-image: url("/img/rtrash.png");
@@ -121,9 +126,15 @@ outline: none;
   background-image: url("/img/gbook.png");
 }
 
+.bookmark-checked:hover{
+  cursor: pointer;
+  background-image: url("/img/wbook.png");
+}
+
 .trash a, 
 .pen a, 
-.bookmark a {
+.bookmark a,
+.bookmark-checked a {
   position: absolute;
   width: 20px;
   height: 20px;
