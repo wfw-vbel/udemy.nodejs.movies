@@ -73,7 +73,7 @@ const admin = 0;
           item = items[0];
         }
         if (item){
-          return item.favoriteItem.destroy();
+          return item.favoriteShow.destroy();
         }
         return Show.findByPk(itemId)
           .then(item => {

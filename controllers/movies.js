@@ -76,7 +76,7 @@ exports.getMoviesPage = (req, res, next) => {
           item = items[0];
         }
         if (item){
-          return item.favoriteItem.destroy();
+          return item.favoriteMovie.destroy();
         }
         return Movie.findByPk(itemId)
           .then(item => {
