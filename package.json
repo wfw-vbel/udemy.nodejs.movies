@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/krizzis/udemy.nodejs.movies#readme",
   "devDependencies": {
-    "nodemon": "^2.0.1",
+    "nodemon": "^2.0.2",
     "sequelize-fixtures": "^1.1.1"
   },
   "dependencies": {
