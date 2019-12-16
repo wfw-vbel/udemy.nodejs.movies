@@ -7,7 +7,7 @@ const sequelize = new Sequelize(
     {
         dialect: 'mysql',
         host: 'eu-cdbr-west-02.cleardb.net'
-        ,logging: false
+        ,logging: true
     });
 
 module.exports = sequelize;
